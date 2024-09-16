@@ -35,5 +35,14 @@ describe("Test for stringOperations", () => {
         it("Should return 23 - case: With no delimiter specified and has single number'", () => {
             expect(stringOperations.add("//;\n23")).toBe(23);
         });
+        it('Should return error - case: Negative numbers are not allowed', () => {
+            expect(() => stringOperations.add("1,-2,3,-4\n5,-22")).toThrow("Negatives not allowed: -2,-4,-22");
+        });
+        it('Should return error - case: Negative numbers are not allowed, With delimiter specified', () => {
+            expect(() => stringOperations.add("//;\n1;-2;3;-4;5")).toThrow("Negatives not allowed: -2,-4");
+        });
+        it('Should return 15 - case: Negative symbol as delimiter', () => {
+            expect(stringOperations.add("//-\n1-2-3-4-5")).toBe(15);
+        });
     });
 })
