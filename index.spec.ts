@@ -58,5 +58,9 @@ describe("Test for stringOperations", () => {
             expect(stringOperations.add("//[-][+]\n1-2+3-4-5")).toBe(15);
             expect(stringOperations.add("//[@][*]\n1@2*3*4*5")).toBe(15);
         });
+        it('Should return 15 - case: Should accept multi delimitors with multi characters', () => {
+            expect(stringOperations.add("//[---][++]\n1++2++3---4---5")).toBe(15);
+            expect(stringOperations.add("//[@@][*@]\n1@@2*@3*@4*@5")).toBe(15);
+        });
     });
 })
