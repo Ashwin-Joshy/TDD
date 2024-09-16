@@ -6,7 +6,10 @@ describe("Test for stringOperations", () => {
             expect(stringOperations.add("")).toBe(0);
         });
         it("Should return 3", () => {
-            expect(stringOperations.add("1, 2")).toBe(3);
+            expect(stringOperations.add("1,2")).toBe(3);
+        });
+        it("Should return 15", () => {
+            expect(stringOperations.add("1,2,3,4,5")).toBe(15);
         });
     });
 })
