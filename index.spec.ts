@@ -48,5 +48,11 @@ describe("Test for stringOperations", () => {
             expect(stringOperations.add("//-\n1-2-3-4000-5")).toBe(11);
             expect(stringOperations.add("1,2,3,1001,5")).toBe(11);
         });
+        it('Should return 15 - case: Should accept multi cutom delimitor charcters', () => {
+            expect(stringOperations.add("//[---]\n1---2---3---4---5")).toBe(15);
+        });
+        it('Should return 15 - case: Should accept multi cutom delimitor charcters even though delimiter is empty', () => {
+            expect(stringOperations.add("//[]\n12345")).toBe(15);
+        });
     });
 })

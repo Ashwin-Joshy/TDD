@@ -10,7 +10,10 @@ const stringingOperations = {
             }
             // New cases where delimiter is specified as //[delimiter]\n[numbers…]
             const initalSplit = string.split('\n');
-            const delimiter = initalSplit[0].substring(2);
+            let delimiter = initalSplit[0].substring(2);
+            if (delimiter.match(/\[.*?\]/g)) {
+                delimiter= delimiter.substring(1, delimiter.length - 1);
+            }
             const result = initalSplit[1].split(delimiter).map(Number).filter((num) => num <= 1000);
             stringingOperations.checkForNegatives(result)
             return result.reduce((acc, curr) => acc + curr, 0);;
