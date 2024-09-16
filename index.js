@@ -12,7 +12,7 @@ const stringingOperations = {
             const initalSplit = string.split('\n');
             let delimiter = initalSplit[0].substring(2);
             if (delimiter.match(/\[.*?\]/g)) {
-                delimiter= delimiter.substring(1, delimiter.length - 1);
+                delimiter = stringingOperations.setDelimiter(delimiter)
             }
             const result = initalSplit[1].split(delimiter).map(Number).filter((num) => num <= 1000);
             stringingOperations.checkForNegatives(result)
@@ -28,6 +28,11 @@ const stringingOperations = {
         if (negatives.length > 0) {
             throw new Error(`Negatives not allowed: ${negatives}`);
         }
+    },
+    setDelimiter: (delimiter) => {
+        delimiter = delimiter.match(/\[.*?\]/g).map((del) => del.slice(1, -1));
+        delimiter = delimiter.map(del => del.replace(/[.*+?^${}()|[\]\\]/g, '\\$&')).join('|');
+        return new RegExp(delimiter, 'g');
     }
 }
 module.exports = stringingOperations;
