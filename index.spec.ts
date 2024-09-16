@@ -23,5 +23,26 @@ describe("Test for stringOperations", () => {
         it("Should return 0 - case: Multiple type of splits in array with fully empty elements", () => {
             expect(stringOperations.add("\n,,\n")).toBe(0);
         });
+        it("Should return error - case: Unrealted delimiters", () => {
+            expect(stringOperations.add("\n,,\n")).toBe(0);
+        });
+        it("Should return Invalid Input - case: Invalid character inserted with input'", () => {
+            expect(stringOperations.add("1\n23,23#")).toBe("Invalid input");
+        });
+        it("Should return 3 - case: With specified delimiter '//[delimiter]\n[numbers..]'", () => {
+            expect(stringOperations.add("//;\n1;2")).toBe(3);
+        });
+        it("Should return Invalid Input - case: With specified delimiter but unmatched input", () => {
+            expect(stringOperations.add("//;\n1,2")).toBe("Invalid input");
+        });
+        it("Should return Invalid Input - case: With no delimiter and unmatching input ", () => {
+            expect(stringOperations.add("//\n1,2")).toBe("Invalid input");
+        });
+        it("Should return 0 - case: With specified delimiter but no numbers'", () => {
+            expect(stringOperations.add("//;\n")).toBe(0);
+        });
+        it("Should return 23 - case: With no delimiter specified and has single number'", () => {
+            expect(stringOperations.add("//;\n23")).toBe(23);
+        });
     });
 })
