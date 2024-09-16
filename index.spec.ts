@@ -44,5 +44,9 @@ describe("Test for stringOperations", () => {
         it('Should return 15 - case: Negative symbol as delimiter', () => {
             expect(stringOperations.add("//-\n1-2-3-4-5")).toBe(15);
         });
+        it('Should return 11 - case: Should skip numbers above 1000', () => {
+            expect(stringOperations.add("//-\n1-2-3-4000-5")).toBe(11);
+            expect(stringOperations.add("1,2,3,1001,5")).toBe(11);
+        });
     });
 })
